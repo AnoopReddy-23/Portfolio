@@ -3,46 +3,39 @@ import {useSelector} from 'react-redux'
 import axios from 'axios'
 import {Card,Button} from 'react-bootstrap'
 
+function Template2() {
 
-function Template1() {
-
-  let {userObj}=useSelector(state=>state.user);
-  let [data,setdata]=useState([])
-  let newArray;
-
-  useEffect(()=>{
-    const fetchProducts=async ()=>{
-      //http get req
-      let response=await axios.get('/admin/getEvents')
-      let productList=response.data.payload
-      //getting the cart products only that belongs to the user logged in
-      newArray= productList.filter((item=> item.key===userObj._id))
-      setdata(newArray)
-      //console.log(productList)
-    }
-    fetchProducts()
-  },[])
-  //console.log(data)
-
+    let {userObj}=useSelector(state=>state.user);
+    let [data,setdata]=useState([])
+    let newArray;
+  
+    useEffect(()=>{
+      const fetchProducts=async ()=>{
+        //http get req
+        let response=await axios.get('/admin/getEvents')
+        let productList=response.data.payload
+        //getting the cart products only that belongs to the user logged in
+        newArray= productList.filter((item=> item.key===userObj._id))
+        setdata(newArray)
+        //console.log(productList)
+      }
+      fetchProducts()
+    },[])
+    //console.log(data)
   return (
     <div className='row m-5 p-5'>
       {
         data.map((item)=>
           <Card className='col-8 mx-auto p-5 m-3'>
             <Card.Body>
-              <div className="row mx-auto">
-                  <div className="col-12 col-md-5">
                     <Card.Img variant="top" src={item.Img} className='w-100 d-block mx-auto' />
-                  </div>
-                  <div className="col-12 col-md-7">
+
                     <Card.Title className='text-danger'>Personal details</Card.Title>
                     <Card.Title>Name: <Card.Title className='text-warning'>{item.username}</Card.Title></Card.Title>
                     <Card.Title>Email: {item.email}</Card.Title>
                     <Card.Title>City: {item.city}</Card.Title>
                     <Card.Title>Mobile NO.: {item.phone}</Card.Title>
-                  </div>
-              </div>
-             
+                  
               <div className="row">
                   <Card.Title className='text-danger'>Education</Card.Title>
                   <Card.Title>Institution Name : {item.instiname}</Card.Title>
@@ -60,4 +53,4 @@ function Template1() {
   )
 }
 
-export default Template1
+export default Template2

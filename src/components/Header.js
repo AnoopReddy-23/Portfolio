@@ -8,6 +8,7 @@ import Login from './Login';
 import Event from './Event';
 import Signup from './Signup';
 import Template1 from './Template1'
+import Template2 from './Template2'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Navigate } from 'react-router-dom'
 import { clearLoginStatus } from '../Slices/userSlice'
@@ -93,6 +94,7 @@ function Header() {
         <Route path="/Login" element={<Login />} />
         <Route path="/HostEvent" element={<HostEvent />} />
         <Route path="/template1" element={<Template1 />} />
+        <Route path="/template2" element={<Template2 />} />
         <Route path="/Event" element={<Event />} />
         <Route path="/Signup" element={<Signup />} />
 
